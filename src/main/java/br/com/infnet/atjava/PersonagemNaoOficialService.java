@@ -1,5 +1,6 @@
 package br.com.infnet.atjava;
 
+import br.com.infnet.atjava.exception.ElementoNaoEncontradoException;
 import br.com.infnet.atjava.model.Episodio;
 import br.com.infnet.atjava.model.PersonagemNaoOficial;
 import org.slf4j.Logger;
@@ -24,10 +25,10 @@ public class PersonagemNaoOficialService {
         ArrayList<PersonagemNaoOficial> personagensNaoOficial = new ArrayList<>();
         PersonagemNaoOficial personagemNaoOficial1 = new PersonagemNaoOficial(0, "terry", "alive", "human", "male", List.of("https://rickandmortyapi.com/api/episode/1",
                 "https://rickandmortyapi.com/api/episode/20"));
-        PersonagemNaoOficial personagemNaoOficial2 = new PersonagemNaoOficial(1, "lindsay", "alive", "human", "female", List.of("1", "2", "3"));
-        PersonagemNaoOficial personagemNaoOficial3 = new PersonagemNaoOficial(2, "lorry", "unknown", "human", "male", List.of("3", "4", "5"));
-        PersonagemNaoOficial personagemNaoOficial4 = new PersonagemNaoOficial(3, "anna", "alive", "human", "female", List.of("9", "10", "11"));
-        PersonagemNaoOficial personagemNaoOficial5 = new PersonagemNaoOficial(4, "hill", "alive", "human", "male", List.of("9", "10", "11"));
+        PersonagemNaoOficial personagemNaoOficial2 = new PersonagemNaoOficial(1, "lindsay", "alive", "human", "female", List.of("https://rickandmortyapi.com/api/episode/1", "https://rickandmortyapi.com/api/episode/14", "https://rickandmortyapi.com/api/episode/5"));
+        PersonagemNaoOficial personagemNaoOficial3 = new PersonagemNaoOficial(7, "lorry", "unknown", "human", "male", List.of("https://rickandmortyapi.com/api/episode/6", "https://rickandmortyapi.com/api/episode/2", "https://rickandmortyapi.com/api/episode/8"));
+        PersonagemNaoOficial personagemNaoOficial4 = new PersonagemNaoOficial(3, "anna", "alive", "human", "female", List.of("https://rickandmortyapi.com/api/episode/16", "https://rickandmortyapi.com/api/episode/21", "https://rickandmortyapi.com/api/episode/9"));
+        PersonagemNaoOficial personagemNaoOficial5 = new PersonagemNaoOficial(4, "hill", "alive", "human", "male", List.of("https://rickandmortyapi.com/api/episode/17", "https://rickandmortyapi.com/api/episode/13", "https://rickandmortyapi.com/api/episode/22"));
 
         personagensNaoOficial.add(personagemNaoOficial1);
         personagensNaoOficial.add(personagemNaoOficial2);
@@ -47,10 +48,22 @@ public class PersonagemNaoOficialService {
     }
 
     public PersonagemNaoOficial buscarPorId(int id) {
-        return personagens.get(id);
+        for (PersonagemNaoOficial personagem : personagens) {
+            if (personagem.getId() == id) {
+                return personagem;
+            }
+        }
+        throw new IllegalArgumentException("Personagem não encontrado para o ID: " + id);
     }
 
     public void adicionar(PersonagemNaoOficial personagemNaoOficial) {
+        int ultimoId = 0;
+        for (PersonagemNaoOficial personagem : personagens) {
+            if (personagem.getId() > ultimoId) {
+                ultimoId = personagem.getId();
+            }
+        }
+        personagemNaoOficial.setId(ultimoId + 1);
         personagens.add(personagemNaoOficial);
     }
 
@@ -64,10 +77,17 @@ public class PersonagemNaoOficialService {
         return new ResponseEntity<>("Personagem não encontrado", HttpStatus.NOT_FOUND);
     }
 
-    public void atualizar(int id, PersonagemNaoOficial personagemNaoOficial) {
-        personagens.remove(id);
-        personagemNaoOficial.setId(id);
-        personagens.add(id, personagemNaoOficial);
+    public ResponseEntity<String> atualizar(int id, PersonagemNaoOficial personagemNaoOficial) {
+        for (PersonagemNaoOficial personagem : personagens) {
+            int position = personagens.indexOf(personagem);
+            if (personagem.getId() == id) {
+                personagens.remove(personagem);
+                personagemNaoOficial.setId(id);
+                personagens.add(position, personagemNaoOficial);
+                return new ResponseEntity<>("Personagem atualizado com sucesso", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Personagem não encontrado", HttpStatus.NOT_FOUND);
     }
 
     public List<Episodio> buscarEpisodios(int id) {

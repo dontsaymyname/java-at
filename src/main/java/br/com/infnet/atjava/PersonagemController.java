@@ -49,8 +49,8 @@ public class PersonagemController {
     }
 
     @PutMapping("/{id}")
-    public void atualizar(@PathVariable int id, @RequestBody  PersonagemNaoOficial personagemNaoOficial){
-        personagemNaoOficialService.atualizar(id,personagemNaoOficial);
+    public  ResponseEntity<String> atualizar(@PathVariable int id, @RequestBody  PersonagemNaoOficial personagemNaoOficial){
+        return personagemNaoOficialService.atualizar(id,personagemNaoOficial);
     }
 
     @DeleteMapping("/{id}")
