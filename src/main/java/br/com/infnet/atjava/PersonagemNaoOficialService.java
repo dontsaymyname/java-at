@@ -96,7 +96,7 @@ public class PersonagemNaoOficialService {
 
         ArrayList<String> episodioIds = new ArrayList<>();
 
-        for (String episodio : personagem.getEpisode()) {
+        for (String episodio : personagem.getEpisodes()) {
             String[] url = episodio.split("/");
             episodioIds.add(url[url.length - 1]);
         }

@@ -13,5 +13,5 @@ public class PersonagemNaoOficial {
     private String status;
     private String species;
     private String gender;
-    private List<String> episode;
+    private List<String> episodes;
 }
