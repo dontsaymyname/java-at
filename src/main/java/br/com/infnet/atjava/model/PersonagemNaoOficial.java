@@ -5,7 +5,8 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class PersonagemNaoOficial {
     private int id;
     private String name;
@@ -13,5 +14,4 @@ public class PersonagemNaoOficial {
     private String species;
     private String gender;
     private List<String> episode;
-
 }

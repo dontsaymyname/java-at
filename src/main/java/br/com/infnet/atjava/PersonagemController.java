@@ -24,42 +24,41 @@ public class PersonagemController {
 
     @GetMapping
     public List<PersonagemNaoOficial> listarTodos(@RequestParam(required = false) String status,
-                                                  @RequestParam(required = false) String gender){
+                                                  @RequestParam(required = false) String gender) {
         logger.info("Listando todos os personagens não oficiais");
         return personagemNaoOficialService.listarPersonagens(status, gender);
     }
 
     @GetMapping("/{id}")
-    public PersonagemNaoOficial buscarPorId(@PathVariable int id){
+    public PersonagemNaoOficial buscarPorId(@PathVariable int id) {
         logger.info("Buscando personagem com id: " + id);
         return personagemNaoOficialService.buscarPorId(id);
 
     }
 
     @GetMapping("/{id}/episodios")
-    public List<Episodio> buscarEpisodiosDoPersongaem(@PathVariable int id){
+    public List<Episodio> buscarEpisodiosDoPersongaem(@PathVariable int id) {
         logger.info("Buscando episódios do personagem do id: " + id);
         return personagemNaoOficialService.buscarEpisodios(id);
     }
 
     @PostMapping
-    public void adicionar(@RequestBody PersonagemNaoOficial personagemNaoOficial){
+    public void adicionar(@RequestBody PersonagemNaoOficial personagemNaoOficial) {
         logger.info("Adicionando novo personagem");
         personagemNaoOficialService.adicionar(personagemNaoOficial);
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<String> atualizar(@PathVariable int id, @RequestBody  PersonagemNaoOficial personagemNaoOficial){
-        return personagemNaoOficialService.atualizar(id,personagemNaoOficial);
+    public ResponseEntity<String> atualizar(@PathVariable int id, @RequestBody PersonagemNaoOficial personagemNaoOficial) {
+        return personagemNaoOficialService.atualizar(id, personagemNaoOficial);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletar(@PathVariable int id){
+    public ResponseEntity<String> deletar(@PathVariable int id) {
         logger.info("Deletando personagem com id: " + id);
         return personagemNaoOficialService.deletar(id);
 
     }
-
 
 
 }

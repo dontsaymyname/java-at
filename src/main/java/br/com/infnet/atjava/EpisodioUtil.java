@@ -29,9 +29,9 @@ public class EpisodioUtil {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            logger.info(String.valueOf(response.statusCode()));
+            logger.info(String.valueOf("Status code resposta: " + response.statusCode()));
 
-            if(response.statusCode() == 404){
+            if (response.statusCode() == 404) {
                 throw new RuntimeException(response.body());
             }
             ObjectMapper objectMapper = new ObjectMapper();

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -97,7 +98,7 @@ public class PersonagemNaoOficialService {
 
         for (String episodio : personagem.getEpisode()) {
             String[] url = episodio.split("/");
-            episodioIds.add(url[url.length -1]);
+            episodioIds.add(url[url.length - 1]);
         }
 
         ArrayList<Episodio> episodios = new ArrayList<>();

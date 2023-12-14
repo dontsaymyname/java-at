@@ -6,7 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +31,7 @@ public class PersonagemNaoOficialServiceTests {
                 .filter(personagem ->
                         (personagem.getStatus().equals("alive"))).toList();
 
-        List<PersonagemNaoOficial> listaGender =  personagemNaoOficialService.personagens.stream()
+        List<PersonagemNaoOficial> listaGender = personagemNaoOficialService.personagens.stream()
                 .filter(personagem ->
                         (personagem.getGender().equals("male"))).toList();
 
@@ -64,7 +66,7 @@ public class PersonagemNaoOficialServiceTests {
         PersonagemNaoOficial novoPersonagem = new PersonagemNaoOficial(4, "alicia", "unknown", "human", "female", List.of("https://rickandmortyapi.com/api/episode/18", "https://rickandmortyapi.com/api/episode/14", "https://rickandmortyapi.com/api/episode/23"));
         personagemNaoOficialService.adicionar(novoPersonagem);
 
-        assertEquals(personagemNaoOficialService.personagens.get(personagemNaoOficialService.personagens.size() -1), novoPersonagem);
+        assertEquals(personagemNaoOficialService.personagens.get(personagemNaoOficialService.personagens.size() - 1), novoPersonagem);
 
     }
 
