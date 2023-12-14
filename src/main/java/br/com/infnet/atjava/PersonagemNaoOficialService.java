@@ -27,7 +27,7 @@ public class PersonagemNaoOficialService {
         PersonagemNaoOficial personagemNaoOficial1 = new PersonagemNaoOficial(0, "terry", "alive", "human", "male", List.of("https://rickandmortyapi.com/api/episode/1",
                 "https://rickandmortyapi.com/api/episode/20"));
         PersonagemNaoOficial personagemNaoOficial2 = new PersonagemNaoOficial(1, "lindsay", "alive", "human", "female", List.of("https://rickandmortyapi.com/api/episode/1", "https://rickandmortyapi.com/api/episode/14", "https://rickandmortyapi.com/api/episode/5"));
-        PersonagemNaoOficial personagemNaoOficial3 = new PersonagemNaoOficial(7, "lorry", "unknown", "human", "male", List.of("https://rickandmortyapi.com/api/episode/6", "https://rickandmortyapi.com/api/episode/2", "https://rickandmortyapi.com/api/episode/8"));
+        PersonagemNaoOficial personagemNaoOficial3 = new PersonagemNaoOficial(2, "lorry", "unknown", "human", "male", List.of("https://rickandmortyapi.com/api/episode/6", "https://rickandmortyapi.com/api/episode/2", "https://rickandmortyapi.com/api/episode/8"));
         PersonagemNaoOficial personagemNaoOficial4 = new PersonagemNaoOficial(3, "anna", "alive", "human", "female", List.of("https://rickandmortyapi.com/api/episode/16", "https://rickandmortyapi.com/api/episode/21", "https://rickandmortyapi.com/api/episode/9"));
         PersonagemNaoOficial personagemNaoOficial5 = new PersonagemNaoOficial(4, "hill", "alive", "human", "male", List.of("https://rickandmortyapi.com/api/episode/17", "https://rickandmortyapi.com/api/episode/13", "https://rickandmortyapi.com/api/episode/22"));
 
